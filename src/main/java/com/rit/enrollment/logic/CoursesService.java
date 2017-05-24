@@ -7,8 +7,6 @@ import java.util.List;
 import org.springframework.security.core.GrantedAuthority;
 
 import com.rit.enrollment.repository.Course;
-import com.rit.enrollment.repository.Student;
-import com.rit.enrollment.repository.User;
 
 public interface CoursesService {
 
