@@ -1,7 +1,6 @@
 package config;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -32,7 +31,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 	
 	public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception{
-		//auth.userDetailsService(userDetailsServiceBean()).passwordEncoder(passwordEncoder());
 		auth.userDetailsService(userDetailsServiceBean());
 		auth.authenticationProvider(authProvider());
 	}
@@ -65,27 +63,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	}
 	
-	/*
-	 * public void configure(HttpSecurity http) throws Exception{
-		http
-		.authorizeRequests()
-		.antMatchers("/myCoursesDepartment").hasAnyAuthority("head")//.access("hasRole('head')")
-		.antMatchers("/myCoursesFaculty").hasAnyAuthority("faculty")//access("hasRole('faculty')")
-		.antMatchers("/myCoursesStudent").hasAnyAuthority("student")//access("hasRole('student')")
-		.anyRequest().fullyAuthenticated()
-		.and() 
-		.formLogin()
-		.loginPage("/login")
-		.defaultSuccessUrl("/coursesList", true)
-		.permitAll()
-		.and()
-		.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-		.logoutSuccessUrl("/logout.done").deleteCookies("JSESSIONID")
-		.invalidateHttpSession(true);
 	
-	}
-	 * 
-	 */
 	@Bean(name="passwordEncoder")
 	public PasswordEncoder passwordEncoder(){
 		return new BCryptPasswordEncoder(10);
